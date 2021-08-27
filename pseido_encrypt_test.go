@@ -13,6 +13,19 @@ func TestPseudoEncrypt(t *testing.T) {
 	}
 }
 
+func BenchmarkPseudoEncrypt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		PseudoEncrypt(int64(i))
+	}
+}
+func BenchmarkPseudoEncryptParallel(b *testing.B) {
+	b.RunParallel(func(p *testing.PB) {
+		for p.Next() {
+			PseudoEncrypt(time.Now().Unix())
+		}
+	})
+}
+
 func TestBoundedPseudoEncrypt(t *testing.T) {
 	value := int64(1000000)
 	min := int64(100000000000)
@@ -23,4 +36,18 @@ func TestBoundedPseudoEncrypt(t *testing.T) {
 		t.Fatal("generate value out of range")
 	}
 
+}
+
+func BenchmarkBoundedPseudoEncrypt(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		BoundedPseudoEncrypt(int64(i), 1000000, 10003)
+	}
+}
+
+func BenchmarkBoundedPseudoEncryptParallel(b *testing.B) {
+	b.RunParallel(func(p *testing.PB) {
+		for p.Next() {
+			BoundedPseudoEncrypt(time.Now().Unix(), 1000000, 10003)
+		}
+	})
 }
