@@ -1,7 +1,9 @@
 # PseudoEncrypt
 
 <https://wiki.postgresql.org/wiki/Pseudo_encrypt>
+
 <https://wiki.postgresql.org/wiki/XTEA_(crypt_64_bits)>
+
 <https://wiki.postgresql.org/wiki/Pseudo_encrypt_constrained_to_an_arbitrary_range>
 
 ## pseudo_encrypt() 原理
